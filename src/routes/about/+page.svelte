@@ -6,7 +6,6 @@
   import "highlight.js/styles/github.css";
 
   let content = "";
-  let title = "";
 
   onMount(async () => {
     const markdownFiles = import.meta.glob("/src/about.md", { as: "raw" });

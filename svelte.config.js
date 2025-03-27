@@ -1,12 +1,13 @@
+import { mdsvex } from 'mdsvex';
 import adapter from '@sveltejs/adapter-auto';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { defineConfig } from 'vite';
 
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
+export default defineConfig({
   kit: {
-    adapter: adapter()
+    adapter: adapter(),
   },
-  preprocess: vitePreprocess()
-};
-
-export default config;
+  extensions: ['.svelte', '.md'], // .md 파일도 Svelte 컴포넌트처럼 사용
+  preprocess: mdsvex({
+    extension: '.md',
+  }),
+});

@@ -2,7 +2,6 @@
   import { onMount } from "svelte";
   import { page } from "$app/stores";
   import { marked } from "marked";
-  import matter from 'gray-matter';
   import "github-markdown-css";
   import "highlight.js/styles/github.css";
 
@@ -12,14 +11,8 @@
     const unsubscribe = page.subscribe(async ({ params }) => {
       if (params.slug) {
         try {
-          // const res = await fetch(`/contents/${params.slug}.md`);
-          // if (!res.ok) throw new Error("파일을 찾을 수 없습니다.");
-          // const text = await res.text();
-          // content = marked(text);
-
-          const markdownFiles = import.meta.glob("/src/contents/*.md", { as: "raw" });
-          const filePath = `/src/contents/${params.slug}.md`;
-          const raw = await markdownFiles[filePath]();
+          const markdownFiles = import.meta.glob("/src/contents/TIL/**/README.md", { as: "raw" });
+          const raw = await markdownFiles[`/src/contents/TIL/${params.slug}/README.md`]();
           
           markedContent = marked(raw);
         } catch (err) {

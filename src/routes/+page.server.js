@@ -1,28 +1,18 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-
 export async function load() {
-  const dir = path.resolve('src/contents');
-  const files = fs.readdirSync(dir);
-  
-  const posts = files
-    .filter(file => file.endsWith('.md'))
-    .map((file) => {
-      const filePath = path.join(dir, file);
-      const fileContent = fs.readFileSync(filePath, 'utf-8');
-      const { data } = matter(fileContent);
+  const postModules = import.meta.glob('/src/contents/**/README.md', { eager: true });
+  const dataModule = await import('/src/contents/data/posts.json');
 
-      return {
-        title: data.title,
-        category: data.category,
-        desc: data.desc,
-        lastModified: data.lastModified,
-        slug: file.replace('.md', ''),
-      };
-    });
+  const posts = Object.entries(postModules).map(([path, mod]) => {
+    const content = mod.default;
+    const slug = path.split('/').slice(-3, -1)[0] + '/' + path.split('/').slice(-3, -1)[1];
+    const metadata = dataModule.default.find(item => item.path == slug);
 
-  return {
-    posts,
-  };
+    return {
+      slug,
+      metadata,
+      content
+    };
+  });
+
+  return { posts };
 }

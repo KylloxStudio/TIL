@@ -129,14 +129,14 @@
         <article class="post-card">
           <a href="/posts/{post.slug}">
             <div class="post-image">
-              <img src="" alt="main image" />
+              <img src="/images/{post.slug}/thumbnail.jpg" alt="thumbnail" />
             </div>
             <div class="post-content">
-              <span class="post-category">{post.category}</span>
-              <h3 class="post-title">{post.title}</h3>
-              <p class="post-excerpt">{post.desc}</p>
+              <span class="post-category">{post.metadata.tag}</span>
+              <h3 class="post-title">{post.metadata.title}</h3>
+              <p class="post-excerpt">{post.metadata.desc}</p>
               <div class="post-meta">
-                <span class="post-date">{post.lastModified}</span>
+                <span class="post-date">{post.metadata.lastModified}</span>
               </div>
             </div>
           </a>
