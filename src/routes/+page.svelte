@@ -132,9 +132,9 @@
               <img src="" alt="main image" />
             </div>
             <div class="post-content">
-              <span class="post-category">카테고리</span>
-              <h3 class="post-title">{post.slug}</h3>
-              <p class="post-excerpt">간력한 설명</p>
+              <span class="post-category">{post.category}</span>
+              <h3 class="post-title">{post.title}</h3>
+              <p class="post-excerpt">{post.desc}</p>
               <div class="post-meta">
                 <span class="post-date">{post.lastModified}</span>
               </div>

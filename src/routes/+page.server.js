@@ -1,10 +1,28 @@
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+
 export async function load() {
-  const files = import.meta.glob("/src/contents/*.md");
+  const dir = path.resolve('src/contents');
+  const files = fs.readdirSync(dir);
+  
+  const posts = files
+    .filter(file => file.endsWith('.md'))
+    .map((file) => {
+      const filePath = path.join(dir, file);
+      const fileContent = fs.readFileSync(filePath, 'utf-8');
+      const { data } = matter(fileContent);
 
-  const posts = Object.keys(files).map((path) => {
-    const slug = path.split("/").pop().replace(".md", "");
-    return { slug };
-  });
+      return {
+        title: data.title,
+        category: data.category,
+        desc: data.desc,
+        lastModified: data.lastModified,
+        slug: file.replace('.md', ''),
+      };
+    });
 
-  return { posts };
+  return {
+    posts,
+  };
 }

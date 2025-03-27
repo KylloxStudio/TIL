@@ -2,11 +2,11 @@
   import { onMount } from "svelte";
   import { page } from "$app/stores";
   import { marked } from "marked";
+  import matter from 'gray-matter';
   import "github-markdown-css";
   import "highlight.js/styles/github.css";
 
-  let content = "";
-  let title = "";
+  let markedContent = "";
 
   onMount(async () => {
     const unsubscribe = page.subscribe(async ({ params }) => {
@@ -20,10 +20,10 @@
           const markdownFiles = import.meta.glob("/src/contents/*.md", { as: "raw" });
           const filePath = `/src/contents/${params.slug}.md`;
           const raw = await markdownFiles[filePath]();
-
-          content = marked(raw);
+          
+          markedContent = marked(raw);
         } catch (err) {
-          content = `<h1>404 - 페이지를 찾을 수 없습니다.</h1>`;
+          markedContent = `<p>${err}</p>`;
         }
       }
     });
@@ -42,5 +42,5 @@
 </style>
 
 <article class="markdown-body">
-  {@html content}
+  {@html markedContent}
 </article>
