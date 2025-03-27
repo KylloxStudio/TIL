@@ -1,0 +1,89 @@
+/* Copyright [NanumSquare - Naver] [https://hangeul.naver.com/font] */
+@font-face {
+  font-family: 'NanumSquare';
+  src: url('/src/fonts/NanumSquareR.ttf');
+}
+
+@font-face {
+  font-family: 'NanumSquare Light';
+  src: url('/src/fonts/NanumSquareL.ttf');
+}
+
+@font-face {
+  font-family: 'NanumSquare Bold';
+  src: url('/src/fonts/NanumSquareB.ttf');
+}
+
+@font-face {
+  font-family: 'NanumSquare ExtraBold';
+  src: url('/src/fonts/NanumSquareEB.ttf');
+}
+
+/* Copyright [Pappins Font - The Poppins Project Authors] [https://github.com/itfoundry/Poppins] */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/src/fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins Medium';
+  src: url('/src/fonts/Poppins-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins SemiBold';
+  src: url('/src/fonts/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins Bold';
+  src: url('/src/fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins Bold Italic';
+  src: url('/src/fonts/Poppins-BoldItalic.ttf');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  color: #000000;
+  font-family: 'NanumSquare', sans-serif;
+}
+
+nav ul,
+nav ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
