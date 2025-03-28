@@ -1,5 +1,12 @@
 [
   {
+    "path": "TIL/0",
+    "title": "Unity 스타터 노트",
+    "tag": "NOTE",
+    "desc": "사전캠프 시작 전, 스타터 노트",
+    "lastModified": "2025-03-27"
+  },
+  {
     "path": "TIL/1",
     "title": "1일차_Unity 내일배움캠프",
     "tag": "TIL",
