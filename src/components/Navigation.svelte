@@ -18,12 +18,10 @@
 
     if (isDark) {
       document.documentElement.setAttribute('color-theme', 'dark');
-      document.body.classList.add("dark");
       isDarkMode = true;
       currentTheme = 'github-dark';
     } else {
       document.documentElement.setAttribute('color-theme', 'light');
-      document.body.classList.remove("dark");
       isDarkMode = false;
       currentTheme = 'github';
     }
