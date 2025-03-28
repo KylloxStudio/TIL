@@ -19,7 +19,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"github-markdown-css": "^5.8.1",
+		"github-markdown-css": "git+https://github.com/KylloxStudio/github-markdown-css.git",
 		"highlight.js": "^11.11.1",
 		"marked": "^15.0.7",
 		"marked-highlight": "^2.2.1",
