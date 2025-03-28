@@ -53,7 +53,7 @@
   }
 
   .check:checked + .slider {
-    background-color: #18181b;
+    background-color: var(--accent-color);
   }
 
   .check:checked + .slider:before {

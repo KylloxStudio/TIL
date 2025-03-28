@@ -22,6 +22,7 @@
     margin-bottom: 30px;
     position: relative;
     padding-bottom: 10px;
+    color: var(--text-primary);
   }
 
   .section-title::after {
@@ -31,7 +32,7 @@
     bottom: 0;
     width: 60px;
     height: 3px;
-    background-color: #0066cc;
+    background-color: var(--accent-color);
   }
 
   .posts-grid {
@@ -41,16 +42,16 @@
   }
 
   .post-card {
-    background-color: white;
+    background-color: var(--bg-secondary);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
   }
 
   .post-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--card-shadow-hover);
     cursor: pointer;
   }
 
@@ -78,7 +79,7 @@
     display: inline-block;
     font-size: 12px;
     font-weight: 600;
-    color: #0066cc;
+    color: var(--accent-color);
     text-transform: uppercase;
     margin-bottom: 10px;
   }
@@ -87,10 +88,12 @@
     font-size: 18px;
     margin-bottom: 10px;
     line-height: 1.4;
+    color: var(--text-primary);
+    transition: color 0.3s;
   }
 
   .post-excerpt {
-    color: #666;
+    color: var(--text-secondary);
     font-size: 14px;
     margin-bottom: 15px;
   }
@@ -99,7 +102,7 @@
     display: flex;
     align-items: center;
     font-size: 12px;
-    color: #999;
+    color: var(--text-muted);
   }
 
   .post-date {
@@ -107,16 +110,17 @@
   }
 
   footer {
-    background-color: white;
+    background-color: var(--bg-secondary);
     padding: 60px 0 30px;
     margin-top: 60px;
+    transition: background-color 0.3s;
   }
 
   .copyright {
     text-align: center;
     padding-top: 30px;
-    border-top: 1px solid #eee;
-    color: #999;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
     font-size: 14px;
   }
 </style>
@@ -149,7 +153,7 @@
 <footer>
   <div class="container">
     <div class="copyright">
-      <p>&copy; 2025 Jung Ji Min. All rights reserved.</p>
+      <p>&copy; 2025 JiMin. All rights reserved.</p>
     </div>
   </div>
 </footer>

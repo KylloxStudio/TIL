@@ -1,3 +1,18 @@
+<script>
+  import "../app.css";
+  import "../globals.css";
+
+  import { onMount } from "svelte";
+  import Navigation from "../components/Navigation.svelte";
+
+  onMount(() => {
+    document.querySelector(".wait").style.opacity = 0;
+    setTimeout(() => {
+      document.querySelector(".wait").style.display = "none";
+    }, 1000);
+  });
+</script>
+
 <style>
   main {
     width: 100%;
@@ -47,21 +62,6 @@
     }
   }
 </style>
-
-<script>
-  import "../app.css";
-  import "../globals.css";
-  
-  import { onMount } from "svelte";
-  import Navigation from "../components/Navigation.svelte";
-
-  onMount(() => {
-    document.querySelector('.wait').style.opacity = 0;
-    setTimeout(() => {
-      document.querySelector('.wait').style.display = 'none';
-    }, 1000);
-  });
-</script>
 
 <Navigation></Navigation>
 <main class="animated fadeIn">
