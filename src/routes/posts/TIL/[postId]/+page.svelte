@@ -48,13 +48,13 @@
     width: 100%;
     max-width: 1028px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 10px 20px 40px;
   }
 </style>
 
 <article class="markdown-body">
   {#if isSuccessLoading}
-    <p>조회수: {views}</p>
+    <p style="text-align: right;">조회수: {views}</p>
   {/if}
 
   {@html markedContent}
