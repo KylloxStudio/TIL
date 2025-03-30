@@ -46,7 +46,7 @@
 <style>
   article {
     width: 100%;
-    max-width: 1028px;
+    max-width: 1024px;
     margin: 0 auto;
     padding: 10px 20px 40px;
   }
