@@ -131,9 +131,9 @@
     <div class="posts-grid">
       {#each data.posts as post}
         <article class="post-card">
-          <a href="/posts/{post.slug}">
+          <a href="/posts/{post.postId}">
             <div class="post-image">
-              <img src="/images/{post.slug}/thumbnail.jpg" alt="thumbnail" />
+              <img src="/images/{post.postId}/thumbnail.jpg" alt="thumbnail" />
             </div>
             <div class="post-content">
               <span class="post-category">{post.metadata.tag}</span>

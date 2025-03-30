@@ -3,12 +3,12 @@ export async function load() {
   const postModules = import.meta.glob('/src/contents/**/README.md', { eager: true, as: 'raw' });
 
   const posts = dataModule.default.map(item => {
-    const slug = item.path;
-    const mdPath = `/src/contents/${slug}/README.md`;
+    const postId = item.path;
+    const mdPath = `/src/contents/${postId}/README.md`;
     const content = postModules[mdPath]?.default || '';
 
     return {
-      slug,
+      postId,
       metadata: item,
       content
     };
