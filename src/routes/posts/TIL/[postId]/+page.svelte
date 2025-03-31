@@ -38,13 +38,16 @@
           await fetch(`http://db.kyllox.pe.kr/til/update_views.php`, {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(postData).toString()
+            body: new URLSearchParams(postData).toString(),
+            referrerPolicy: "unsafe-url"
           });
 
           localStorage.setItem('lastRequestTime', currentTime);
         }
 
-        const res = await fetch(`http://db.kyllox.pe.kr/til/get_views.php?post_id=${postId}`);
+        const res = await fetch(`http://db.kyllox.pe.kr/til/get_views.php?post_id=${postId}`, {
+          referrerPolicy: "unsafe-url"
+        });
         const data = await res.json();
         views = data.views;
 
