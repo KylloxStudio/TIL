@@ -35,19 +35,15 @@
             post_id: postId
           };
 
-          await fetch(`http://db.kyllox.pe.kr/til/update_views.php`, {
+          await fetch('/api/update_views', {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(postData).toString(),
-            referrerPolicy: "unsafe-url"
+            body: JSON.stringify(postData)
           });
 
           localStorage.setItem('lastRequestTime', currentTime);
         }
 
-        const res = await fetch(`http://db.kyllox.pe.kr/til/get_views.php?post_id=${postId}`, {
-          referrerPolicy: "unsafe-url"
-        });
+        const res = await fetch(`/api/get_views?post_id=${postId}`);
         const data = await res.json();
         views = data.views;
 
