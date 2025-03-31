@@ -3,6 +3,7 @@
   import { page } from "$app/stores";
   import { Marked } from "marked";
   import { markedHighlight } from "marked-highlight";
+  import { ProgressBar } from "@prgm/sveltekit-progress-bar";
   import hljs from 'highlight.js';
   import "github-markdown-css";
   // import 'highlight.js/styles/github.css';
@@ -27,10 +28,20 @@
   onMount(async () => {
     if (postId) {
       try {
-        const lastRequestTime = localStorage.getItem('lastRequestTime');
-        const currentTime = Date.now();
+        const progress = new ProgressBar({
+          target: document.querySelector('body'),
+          props: { color: '#70b7f3', zIndex: 100 }
+        });
+        progress.start();
 
-        if (lastRequestTime && (currentTime - lastRequestTime) >= 10000) {
+        const currentTime = Date.now();
+        const lastRequestTime = localStorage.getItem('lastRequestTime');
+
+        if (lastRequestTime == null) {
+          localStorage.setItem('lastRequestTime', currentTime - 10000);
+        }
+
+        if (currentTime - lastRequestTime >= 10000) {
           const postData = {
             post_id: postId
           };
@@ -52,6 +63,8 @@
 
         markedContent = marked.parse(raw);
         isSuccessLoading = true;
+
+        progress.complete();
       } catch (err) {
         console.error(err);
         markedContent = `<p>오류가 발생했습니다.</p>`;
@@ -68,6 +81,8 @@
     padding: 10px 20px 40px;
   }
 </style>
+
+<!-- <ProgressBar bind:this={progress} color="#70b7f3" zIndex={100} /> -->
 
 <article class="markdown-body">
   {#if isSuccessLoading}
