@@ -7,8 +7,6 @@
   import "github-markdown-css";
   // import 'highlight.js/styles/github.css';
 
-  export let data;
-
   const marked = new Marked(
     markedHighlight({
       emptyLangClass: 'hljs',
@@ -20,26 +18,46 @@
     })
   );
 
-  let views = data.views;
+  let postId = $page.params.postId;
+
+  let views = 0;
   let markedContent = "";
   let isSuccessLoading = false;
 
   onMount(async () => {
-    const unsubscribe = page.subscribe(async ({ params }) => {
-      if (params.postId) {
-        try {
-          const markdownFiles = import.meta.glob("/src/contents/TIL/**/README.md", { as: "raw" });
-          const raw = await markdownFiles[`/src/contents/TIL/${params.postId}/README.md`]();
+    if (postId) {
+      try {
+        const lastRequestTime = localStorage.getItem('lastRequestTime');
+        const currentTime = Date.now();
 
-          markedContent = marked.parse(raw);
-          isSuccessLoading = true;
-        } catch (err) {
-          markedContent = `<p>404: 페이지를 찾을 수 없습니다.</p>`;
+        if (lastRequestTime && (currentTime - lastRequestTime) >= 10000) {
+          const postData = {
+            post_id: postId
+          };
+
+          await fetch(`http://db.kyllox.pe.kr/til/update_views.php`, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(postData).toString()
+          });
+
+          localStorage.setItem('lastRequestTime', currentTime);
         }
+
+        const res = await fetch(`http://db.kyllox.pe.kr/til/get_views.php?post_id=${postId}`);
+        const data = await res.json();
+        views = data.views;
+
+        const markdownFiles = import.meta.glob("/src/contents/TIL/**/README.md", { as: "raw" });
+        const raw = await markdownFiles[`/src/contents/TIL/${postId}/README.md`]();
+
+        markedContent = marked.parse(raw);
+        isSuccessLoading = true;
+      } catch (err) {
+        console.error(err);
+        markedContent = `<p>오류가 발생했습니다.</p>`;
       }
-    });
-    
-    return () => unsubscribe();
+    }
   });
 </script>
 
