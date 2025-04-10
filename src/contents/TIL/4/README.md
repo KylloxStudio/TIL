@@ -1,8 +1,8 @@
-# 숫자 맞추기 게임
+# 배열 요소의 최대값과 최소값 찾기
 
-오늘은 C#을 사용해서 간단한 숫자 맞추기 게임을 만들어보겠습니다. 1부터 100까지의 랜덤한 숫자를 맞추는 게임입니다. 숫자를 입력하면 컴퓨터는 숫자가 더 크거나 작은지 힌트를 주며, 맞출 때까지 반복합니다.
-   
-### 소스 코드
+오늘은 숫자 배열에서의 최소값과 최대값을 구하는 문제를 학습해보겠습니다.   
+문제: ```int[] numbers = { 10, 20, 30, 40, 50 };```와 같은 배열에서의 최소값, 최대값 구하기
+
 ```cs
 using System;
 
@@ -12,51 +12,31 @@ namespace Project1
     {
         static void Main(string[] args)
         {
-            Random random = new Random();
-            int n = random.Next(1, 101);
-            while (true)
+            int[] numbers = { 10, 20, 30, 40, 50 };
+            int min = numbers[0];
+            int max = numbers[0];
+            for (int i = 0; i < numbers.Length; i++)
             {
-                Console.Write("Enter your guess (1-100): ");
-                if (int.TryParse(Console.ReadLine(), out int guess))
+                if (numbers[i] < min)
                 {
-                    if (guess == n)
-                    {
-                        Console.WriteLine("Congratulations! You guessed the number.");
-                        break;
-                    }
-                    else if (guess < n)
-                    {
-                        Console.WriteLine("Too low! Try again.");
-                    }
-                    else if (guess > n)
-                    {
-                        Console.WriteLine("Too high! Try again.");
-                    }
+                    min = numbers[i];
                 }
-                else
+
+                if (numbers[i] > max)
                 {
-                    Console.WriteLine("Not a Number! Try again.");
+                    max = numbers[i];
                 }
             }
+
+            Console.WriteLine("min: " + min);
+            Console.WriteLine("max: " + max);
         }
     }
 }
 ```
 
-### 출력 결과
-```
-Enter your guess (1-100): 50
-Too low! Try again.
-Enter your guess (1-100): 75
-Too high! Try again.
-Enter your guess (1-100): 62
-Too high! Try again.
-Enter your guess (1-100): 57
-Too low! Try again.
-Enter your guess (1-100): 59
-Congratulations! You guessed the number.
-```
+전체 코드는 위와 같습니다.   
    
-
-```Random``` 클래스를 사용하여 1부터 100 사이의 랜덤한 정수를 변수에 저장합니다. 그 후, ```ReadLine```을 통해 사용자의 입력을 받아오고 ```int.TryParse```로 정수로 변환합니다.   
-변환된 입력을 처음에 정한 숫자와 비교하여 사용자에게 힌트를 줍니다. 맞출 때까지 반복합니다.
+먼저, 변수 min과 max를 선언합니다. 초기값은 배열의 첫번째 요소로 합니다.   
+그 후에 배열 전체를 순회하며 각 요소와 변수 ```min```, ```max```의 크기를 비교합니다. 요소의 값이 ```min```보다 작으면 ```min```에 요소의 값을 넣고, 요소의 값이 ```max```보다 크다면 ```max```에 요소의 값을 넣습니다.
+비교가 끝난 후 ```min```과 ```max```의 값을 출력합니다.
