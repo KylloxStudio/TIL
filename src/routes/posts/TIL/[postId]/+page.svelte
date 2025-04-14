@@ -19,6 +19,7 @@
     })
   );
 
+  export let data;
   let postId = $page.params.postId;
 
   let views = 0;
@@ -81,6 +82,10 @@
     padding: 10px 20px 40px;
   }
 </style>
+
+<svelte:head>
+  <title>{data.title}</title>
+</svelte:head>
 
 <!-- <ProgressBar bind:this={progress} color="#70b7f3" zIndex={100} /> -->
 

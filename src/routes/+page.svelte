@@ -125,6 +125,10 @@
   }
 </style>
 
+<svelte:head>
+  <title>TIL</title>
+</svelte:head>
+
 <main class="container">
   <section class="posts-section">
     <h2 class="section-title">Posts</h2>
