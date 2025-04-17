@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { page } from "$app/stores";
+  import { isDarkMode } from "../../../../stores";
   import { Marked } from "marked";
   import { markedHighlight } from "marked-highlight";
   import { ProgressBar } from "@prgm/sveltekit-progress-bar";
@@ -26,7 +27,27 @@
   let markedContent = "";
   let isSuccessLoading = false;
 
+  function loadUtterances(theme) {
+    const container = document.getElementById('utterances-container');
+
+    const oldIframe = container.querySelector('iframe');
+    if (oldIframe) container.innerHTML = '';
+
+    const script = document.createElement('script');
+    script.src = 'https://utteranc.es/client.js';
+    script.setAttribute('repo', 'KylloxStudio/TIL');
+    script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('theme', theme);
+    script.crossOrigin = 'anonymous';
+    script.async = true;
+    container.appendChild(script);
+  }
+
   onMount(async () => {
+    isDarkMode.subscribe((dark) => {
+      loadUtterances(dark ? 'github-dark' : 'github-light');
+    });
+
     if (postId) {
       try {
         const progress = new ProgressBar({
@@ -95,4 +116,6 @@
   {/if}
 
   {@html markedContent}
+
+  <div id="utterances-container"></div>
 </article>

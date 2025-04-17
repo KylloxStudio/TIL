@@ -1,14 +1,14 @@
 <script>
   import { onMount } from "svelte";
+  import { isDarkMode } from "../stores";
   import ToggleSwitch from "./ToggleSwitch.svelte";
 
-  let isDarkMode = false;
   let currentTheme = 'github';
   let themeLink;
 
   const onChangedDarkToggle = () => {
-    setTheme(isDarkMode);
-    localStorage.setItem('darkMode', isDarkMode);
+    setTheme($isDarkMode);
+    localStorage.setItem('darkMode', $isDarkMode);
   };
 
   const setTheme = (isDark) => {
@@ -18,11 +18,11 @@
 
     if (isDark) {
       document.documentElement.setAttribute('color-theme', 'dark');
-      isDarkMode = true;
+      isDarkMode.set(true);
       currentTheme = 'github-dark';
     } else {
       document.documentElement.setAttribute('color-theme', 'light');
-      isDarkMode = false;
+      isDarkMode.set(false);
       currentTheme = 'github';
     }
 
@@ -142,7 +142,7 @@
       </ul>
       <div class="theme-toggle">
         <span class="theme-toggle-icon">🌓</span>
-        <ToggleSwitch bind:isChecked={isDarkMode} onClickMethod={onChangedDarkToggle} />
+        <ToggleSwitch bind:isChecked={$isDarkMode} onClickMethod={onChangedDarkToggle} />
       </div>
     </nav>
   </div>
