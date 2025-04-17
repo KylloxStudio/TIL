@@ -1,5 +1,12 @@
 [
   {
+    "path": "TIL/9",
+    "title": "[C#] 직렬화, 역직렬화 feat. JSON",
+    "tag": "TIL",
+    "desc": "Unity 내일배움캠프 본캠프 2주차_3",
+    "lastModified": "2025-04-17"
+  },
+  {
     "path": "TIL/8",
     "title": "C# 콘솔 Text RPG 게임 만들기_1",
     "tag": "TIL",
