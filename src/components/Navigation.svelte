@@ -39,7 +39,7 @@
     if (savedTheme !== null) {
       setTheme(savedTheme === 'true');
     } else {
-      setTheme(prefersDarkScheme.matches);
+      setTheme(false);
     }
 
     prefersDarkScheme.addEventListener('change', (e) => {
